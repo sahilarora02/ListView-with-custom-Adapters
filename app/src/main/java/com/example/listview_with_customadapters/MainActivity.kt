@@ -1,5 +1,6 @@
 package com.example.listview_with_customadapters
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
@@ -33,5 +34,30 @@ class MainActivity : AppCompatActivity() {
         val listView  = findViewById<ListView>(R.id.listView)
         listView.isClickable = true
         listView.adapter = MyAdapter(this , userArrayList)
+
+    ////        listView.setOnItemClickListener { adapterView, view, i, l ->
+    //            val userName = name[i]
+    //            val userPhone = phoneNumber[i]
+    //            val imgId = imgId[i]
+    //
+    //            val i = Intent(this , UserActivity::class.java)
+    //
+    //            i.putExtra("name" , userName)
+    //            i.putExtra("phone" , userPhone)
+    //            i.putExtra("imageId" , imgId)
+    //            startActivity(i )
+    ////        }
+        listView.setOnItemClickListener{parent , view , position , id ->
+            val userName = name[position]
+            val userPhone = phoneNumber[position]
+            val imageId = imgId[position]
+
+            val i = Intent(this , UserActivity::class.java)
+
+            i.putExtra("name" , userName)
+            i.putExtra("phone" , userPhone)
+            i.putExtra("imageId" , imageId)
+            startActivity(i)
+        }
     }
 }
